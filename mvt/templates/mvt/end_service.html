@@ -1,0 +1,58 @@
+{% extends 'mvt/base.html' %}
+
+{% block content %}
+{% if requests %}
+<table>
+    <tr>
+        <th>
+            <h4>Care Seeker</h4>
+        </th>
+        <th>
+            <h4>Care Taker</h4>
+        </th>
+        <th>
+            <h4>Request date</h4>
+        </th>
+        <th>
+            <h4>Service end date</h4>
+        </th>
+        <th></th>
+    </tr>
+    {% for request in requests %}
+    <tr>
+        <td>
+            <p>
+                {{ request.get_care_seeker_name }}
+            </p>
+        </td>
+        <td>
+            <p>
+                {{ request.get_care_taker_name }}
+            </p>
+        </td>
+        <td>
+            <p>
+                {{ request.get_timestamp }}
+            </p>
+        </td>
+        <td>
+            <p>
+                {{  request.get_enddate }}
+            </p>
+        </td>
+        <td>
+            <a href="{% url 'end_service' request.get_pk %}">
+                <p>
+                    end service
+                </p>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+
+<h2>No requests are available</h2>
+
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'mvt/base.html' %}
+
+{% block content %}
+
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ ct.get_care_taker_image }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ ct.get_care_taker_name }}</h2>
+
+            {% if ct.get_age %}
+
+            <p class="text-secondary">age:{{ ct.get_age }}</p>
+
+            {% endif %}
+
+            {% if ct.get_bio %}
+
+            <p class="text-secondary">discription:{{ ct.get_bio }}</p>
+
+            {% endif %}
+
+            <p class="text-secondary">email:{{ ct.get_care_taker_email }}</p>
+            <p class="text-secondary">contact no:{{ ct.get_care_taker_contact }}</p>
+
+            {% if ct.get_address %}
+
+            <p class="text-secondary">{{ ct.get_address }}</p>
+
+            {% endif %}
+        </div>
+        <div class="request_status">
+            {% if status %}
+
+            <button>{{ status }}</button>
+
+            {% else %}
+
+            <a href="{% url 'approve_request' ct.get_care_taker_pk %}"><button>approve</button></a>
+
+            {% endif %}
+            {% if review %}
+
+            <a href="{% url 'review' ct.get_care_taker_pk 'ct' %}">
+
+                <p>review</p>
+            </a>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

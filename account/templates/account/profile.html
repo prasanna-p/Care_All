@@ -1,0 +1,29 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+
+<div class="post_sec">
+    <div class="content-section">
+        <div class="media">
+          <img class="rounded-circle account-img" src="{{ user.image.url }}">
+          <div class="media-body">
+            <h2 class="account-heading">{{ user.get_username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+            <p class="text-secondary">{{ user.bio }}</p>
+          </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form_field_div">
+                {% for field in form %}
+                <div>{{ field.label }}</div>
+                <div>{{ field }}</div>
+                <div>{{ field.errors }}</div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Update">
+        </form>
+      </div>
+</div>
+
+{% endblock content %}

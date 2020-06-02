@@ -1,0 +1,19 @@
+{% extends 'mvt/base.html' %}
+
+{% block content %}
+
+<div class="post_sec">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_field_div">
+            {% for field in form %}
+            <div>{{ field.label }}</div>
+            <div>{{ field }}</div>
+            <div>{{ field.errors }}</div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="confirm">
+    </form>
+</div>
+
+{% endblock content %}

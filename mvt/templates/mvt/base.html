@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="topbar">
+      <section class="topbar_heading">
+          <a href="#"><h3>Care All</h3></a>
+      </section>
+      <section>
+          <div>
+              <h3>home</h3>
+          </div>
+      </section>
+      <section>
+          <div>
+              <h3>about</h3>
+          </div>
+      </section>
+      <section>
+          <div>
+              <h3>contact us</h3>
+          </div>
+      </section>
+      <section>
+        <div class="Auth_div">
+            {% if user.is_authenticated %}
+            <div>
+                <p>{{ user.role }}</p>
+               <a href="{{ user.get_absolute_url }}"> {{ user.get_username }}</a>
+            </div>
+            <div>
+                <a href="{% url 'logout' %}">logout</a>
+            </div>
+            {% else %}
+            <div>
+                <a href="{% url 'login' %}">login</a>
+            </div>
+            {% endif %}
+        </div>
+      </section>
+  </div>
+  <div class="body_div" >
+    <div class="col-md-8">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'mvt/base.html' %}
+
+{% block content %}
+
+<div class="blog_cards">
+    {% for cs in requests %}
+    <div class="blog_card_container">
+        <a class="blog_cards_link" href="{% url 'care_seeker' cs.get_care_seeker_pk %}">
+            <div class="blog_card_container_image_section">
+                <img class="image_card" src="{{ cs.get_care_seeker_image }}" alt="not found">
+            </div>
+            <div class="blog_card_container_description">
+                <p class="blog_card_author_name">
+                    <h4>{{ cs.get_care_seeker_name }} </h4>
+                </p>
+                <div class="blog_card_description">
+                    <div class="blog_card_description_div">
+                        <h4>Contact info</h4>
+                        <p>email:{{ cs.get_care_seeker_email }}</p>
+                        <p>phone no:{{ cs.get_care_seeker_contact }}</p>
+                    </div>
+                </div>
+                <h5>{{ cs.get_status  }}</h5>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

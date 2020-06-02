@@ -1,0 +1,53 @@
+{% extends 'mvt/base.html' %}
+
+{% block content %}
+
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ care_seeker.get_care_seeker_image }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ care_seeker.get_care_seeker_name }}</h2>
+
+            {% if care_seeker.get_age %}
+
+            <p class="text-secondary">age:{{ care_seeker.get_age }}</p>
+
+            {% endif %}
+
+            {% if care_seeker.get_bio %}
+
+            <p class="text-secondary">discription:{{ care_seeker.get_bio }}</p>
+
+            {% endif %}
+
+            <p class="text-secondary">email:{{ care_seeker.get_care_seeker_email }}</p>
+            <p class="text-secondary">contact no:{{ care_seeker.get_care_seeker_contact }}</p>
+
+            {% if care_seeker.get_address %}
+
+            <p class="text-secondary">{{ care_seeker.get_address }}</p>
+
+            {% endif %}
+        </div>
+        <div class="request_status">
+            {% if status %}
+
+            <button>{{ status }}</button>
+
+            {% else %}
+
+            <a href="{% url 'care_seeker' care_seeker.get_care_seeker_pk 'req' %}"><button>request</button></a>
+
+            {% endif %}
+            {% if review %}
+
+            <a href="{% url 'review' care_seeker.get_care_seeker_pk 'cs' %}">
+                <p>
+                    review
+                </p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

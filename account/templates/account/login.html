@@ -1,0 +1,24 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+
+<div class="post_sec">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_field_div">
+            {% for field in form %}
+            <div>{{ field.label }}</div>
+            <div>{{ field }}</div>
+            <div>{{ field.errors }}</div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="login">
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{% url 'signup' %}">Sign Up Now</a>
+        </small>
+    </div>
+</div>
+
+{% endblock content %}
